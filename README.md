@@ -62,7 +62,7 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
   ylab('y_DependentVariable_Title')
 ```
 
-## Suplementary Materials: 
+## Supplementary Materials: 
 
 Table of RNAseq Samples included in Analysis. The raw file is available for download at link to the left, or in table above.
 
