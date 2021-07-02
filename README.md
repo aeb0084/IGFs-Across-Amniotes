@@ -63,3 +63,9 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
 
 ## Suplementary Materials: 
 
+Image of phylogenetic tree produced from the [Dendrogram for Phylogeny](amniota_2.txt). This image was used to create plot3ID CSV file and produce Figure 1 in BioRender.
+
+<img src="Amniota_tree.jpeg" width="600">
+
+
+
