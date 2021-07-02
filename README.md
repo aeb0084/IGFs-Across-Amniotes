@@ -29,38 +29,37 @@ Examples of required packages, statistical models, and plots used can be seen be
 
 ```ruby
 #Required Packages
-library(multcomp)
+library(tidyverse)
+library(viridis)
+library(Rmisc)
 library(ggplot2)
 library(nlme)
-library(grid)
-library(Rmisc)
-library(gridExtra)
-library(emmeans)
-library(cowplot)
+library(arsenal)
+library(janitor)
+library(ggforce)
+library(ggalt)
+library(dplyr)
+library(ggalt)
+library(ggforce)
 
 #Linear Mixed Models
-#Run linear model comparing variable of interest across time including Maternal ID as a random effect variable
-model=(lme(Dependent_Variable~Independent_Variable, data=dat, na.action=na.omit, random=~1|MaternalID))
+#Run linear model comparing variable of interest across time, including Content as a random effect variable to account for triplicate replication in qPCR runs.
+model=(lme(Dependent_Variable~Independent_Variable, data=dat, na.action=na.omit, random=~1|Content))
 #Run an anova output to display F-values and P-values
 anova(model)
+#Run summary output to obtain Estimates, Confidence Intervals and p-values
+summary(model)
 
-#Run EmMeans package to get pairwise comparisons of Independent Variables (Times or Treatments)
-model.em=emmeans(model, list(pairwise ~ Independent_Variable), adjust = "tukey")
-#Report adjusted means and P-values
-model.em
-#Report confidence intervals from EmMeans model
-confint(model.em)
 
 #Graph patterns using ggplot2 package
-plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Independent_Variable)) + geom_violin(trim=F) + 
-geom_boxplot(width=0.2, color="black") + geom_point (position=dodge, shape=1) + scale_fill_manual(values= c('gray62','darkslategray', 'darkseagreen2')) +
+plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=GeneTarger)) + geom_violin(trim=F, position=dodge, scale="width") + 
+ geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+ geom_point(data = Independent_Variable, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+ geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= GeneTarget),   color="white") + 
+    theme_bw() +
   xlab('x_IndependentVariable_Title') +
   ylab('y_DependentVariable_Title')
 ```
 
-## Supplementary Figures: 
-<img src="SFig1_Github.png" width="700">
-<img src="SFig2_Github.png" width="500">
-<img src="SFig3_Github2.png" width="450">
-<img src="SFig4_Github.png" width="700">
-<img src="STable1_Github.png" width="600">
+## Suplementary Materials: 
+
