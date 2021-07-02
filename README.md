@@ -14,12 +14,11 @@ RNAseq Data Mining                   |Raw Data                             | [Ra
 &nbsp;                               |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.txt)
 &nbsp;                               |Statistical Code                     | [RNAseq Analysis Code]()
 IGF Expression Analysis              |Raw Data                             | [IGF Publication Over Time](Timeline_IGFs_pub.csv)
-                                     |&nbsp;                               | [qPCR IGF Expression Across Species](Species_Combined_edited_2.csv)
-                                     |&nbsp;                               | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
-                                     |Statistical Code                     | [Quantitative Analysis R Code](CrossSpecGraph_Final.rmd)
-                                     |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
-                                     |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
-                                     
+&nbsp;                               |&nbsp;                               | [qPCR IGF Expression Across Species](Species_Combined_edited_2.csv)
+&nbsp;                               |&nbsp;                               | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
+&nbsp;                               |Statistical Code                     | [Quantitative Analysis R Code](CrossSpecGraph_Final.rmd)
+&nbsp;                               |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
+&nbsp;                               |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
 
 
 ## Statistical Modeling and Data: 
