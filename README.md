@@ -16,16 +16,16 @@ RNAseq Data Mining                   |Raw Data                             | [Ra
 IGF Expression Analysis              |Raw Data                             | [IGF Publication Over Time](Timeline_IGFs_pub.csv)
 &nbsp;                               |&nbsp;                               | [qPCR IGF Expression Across Species](Species_Combined_edited_2.csv)
 &nbsp;                               |&nbsp;                               | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
-&nbsp;                               |Statistical Code                     | [Quantitative Analysis R Code](CrossSpecGraph_Final.rmd)
+&nbsp;                               |Statistical Code                     | [Statistical Analysis/Visualization Code](CrossSpecGraph_Final.rmd)
 &nbsp;                               |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
 &nbsp;                               |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
 
 
 ## Statistical Modeling and Data: 
 
-The statistical analyses were performed in R (version 3.5.1) using [downloadable code](Regneration_publication.code.final.Rmd) in an R Markdown format. [Code output](Regneration_publication.code.final.html) displays all statistical models, results, and figures produced. Note, you will have to download the HTML file to visualize the data output. 
+The statistical analyses were performed in R (version 4.0.3) using the code file titled [Quantitative Analysis R Code] in an R Markdown format. The code output displays all statistical models, results, and figures produced in either [PDF](CrossSpecGraph_Final.pdf) or [HTML](CrossSpecGraph_Final.html) format. Note, you will have to download the HTML file to visualize the data output. 
 
-Examples of required packages, statistical models, and plots used can be seen below. Note: These are generalized examples produced for ease of adaptation. [Downloadable code](Regneration_publication.code.final.Rmd) contains the specific models used for publication, and the output can be found in the [Code output](Regneration_publication.code.final.html).
+Examples of required packages, statistical models, and plots used can be seen below. Note: These are generalized examples produced for ease of adaptation. Both  files containing [RNAseq Analysis Code]() and all [Statistical Analysis/Visualization Code](CrossSpecGraph_Final.rmd) contains the specific models used for publication.
 
 ```ruby
 #Required Packages
