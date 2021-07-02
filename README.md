@@ -21,7 +21,8 @@ IGF Expression Analysis              |Raw Data                             | [IG
 &nbsp;                               |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
 &nbsp;                               |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
 
-## This project has two distinct components. The first is a RNAseq analysis across amniotes using publicly available data. The second is a quantitative expression analysis of IGF1 and IGF2 expression in two lizards (the brown anole and eastern fence lizards), two birds (the zebra finch and house sparrow), and two mice (the house mouse and deer mouse) across developmental stages in liver tissue.
+## Project Summary: 
+> This project has two distinct components. The first is a RNAseq analysis across amniotes using publicly available data. The second is a quantitative expression analysis of IGF1 and IGF2 expression in two lizards (the brown anole and eastern fence lizards), two birds (the zebra finch and house sparrow), and two mice (the house mouse and deer mouse) across developmental stages in liver tissue.
 
 ### RNAseq Data Curration: 
 
