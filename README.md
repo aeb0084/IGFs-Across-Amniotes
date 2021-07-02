@@ -4,7 +4,7 @@ Abby Beatty, Alexander M Rubin, Haruka Wada, Britt Heidinger, Wendy R. Hood, and
 This repository holds all supplemental files for "We need to talk, about IGF2".
 
 ## Abstract: 
-"A historical bias exists in the study of the vertebrate Insulin and Insulin-like Signaling (IIS) network. Insulin-like growth factor 1 (IGF1) and 2 (IGF2) are the key hormones regulating the IIS network through binding the Insulin-like Growth Factor 1 Receptor. Humans express both IGF1 and IGF2 as juveniles and adults. Rodent models for biomedical research have provided the wealth of information we currently have on this network; but they lack postnatal IGF2 gene expression. This has led to the physiological effects of IGF2 and its regulation of the IIS network during juvenile and adult stages to be largely ignored in biomedicine. This bias has translated to research in functional ecology, where IGF2 has also been understudied, likely due to the assumption that rodent-like IGF expression patterns exist across vertebrate species. To test this assumption, we quantify the relative liver gene expression of IGF1 and IGF2 across amniote lineages using two approaches: (1) analysis of adult liver RNAseq data from 82 amniote species from NCBI, and (2) qPCR on liver cDNA at embryonic, juvenile and adult stages of six species. Here, we present a cross species comparison that clearly demonstrates that IGF2 is expressed postnatally in nearly all other amniotes tested, contradicting accepted patterns from laboratory rodent models. Additionally, we found that IGF2 is expressed across embryonic, juvenile, and adult mammals, reptiles, and birds - often at higher relative expression compared to IGF1. Additionally, we find evidence of sex-biased adult expression in some species, and that outbred mouse strains lack IGF2 expression consistent with the lab-selected strains across two families. Our results demonstrate that postnatal expression of IGF2 is typical for amniotes, illustrating the need to pivot away from the null hypothesis defined by the laboratory rodents. Further, this study highlights a need for future studies examining the roles of IGF2, alongside IGF1, in mediating variation in growth patterns and other life-history traits."
+> "A historical bias exists in the study of the vertebrate Insulin and Insulin-like Signaling (IIS) network. Insulin-like growth factor 1 (IGF1) and 2 (IGF2) are the key hormones regulating the IIS network through binding the Insulin-like Growth Factor 1 Receptor. Humans express both IGF1 and IGF2 as juveniles and adults. Rodent models for biomedical research have provided the wealth of information we currently have on this network; but they lack postnatal IGF2 gene expression. This has led to the physiological effects of IGF2 and its regulation of the IIS network during juvenile and adult stages to be largely ignored in biomedicine. This bias has translated to research in functional ecology, where IGF2 has also been understudied, likely due to the assumption that rodent-like IGF expression patterns exist across vertebrate species. To test this assumption, we quantify the relative liver gene expression of IGF1 and IGF2 across amniote lineages using two approaches: (1) analysis of adult liver RNAseq data from 82 amniote species from NCBI, and (2) qPCR on liver cDNA at embryonic, juvenile and adult stages of six species. Here, we present a cross species comparison that clearly demonstrates that IGF2 is expressed postnatally in nearly all other amniotes tested, contradicting accepted patterns from laboratory rodent models. Additionally, we found that IGF2 is expressed across embryonic, juvenile, and adult mammals, reptiles, and birds - often at higher relative expression compared to IGF1. Additionally, we find evidence of sex-biased adult expression in some species, and that outbred mouse strains lack IGF2 expression consistent with the lab-selected strains across two families. Our results demonstrate that postnatal expression of IGF2 is typical for amniotes, illustrating the need to pivot away from the null hypothesis defined by the laboratory rodents. Further, this study highlights a need for future studies examining the roles of IGF2, alongside IGF1, in mediating variation in growth patterns and other life-history traits."
 
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 Analysis| File Type | &nbsp;
@@ -21,11 +21,11 @@ IGF Expression Analysis              |Raw Data                             | [IG
 &nbsp;                               |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
 &nbsp;                               |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
 
-> This project has two distinct components. The first is a RNAseq analysis across amniotes using publicly available data. The second is a quantitative expression analysis of IGF1 and IGF2 expression in two lizards (the brown anole and eastern fence lizards), two birds (the zebra finch and house sparrow), and two mice (the house mouse and deer mouse) across developmental stages in liver tissue.
+## This project has two distinct components. The first is a RNAseq analysis across amniotes using publicly available data. The second is a quantitative expression analysis of IGF1 and IGF2 expression in two lizards (the brown anole and eastern fence lizards), two birds (the zebra finch and house sparrow), and two mice (the house mouse and deer mouse) across developmental stages in liver tissue.
 
-## RNAseq Data Curration: 
+### RNAseq Data Curration: 
 
-## Statistical Modeling and Data Visualization: 
+### Statistical Modeling and Data Visualization: 
 
 The statistical analyses were performed in R (version 4.0.3) using the code file titled [Quantitative Analysis R Code] in an R Markdown format. The code output displays all statistical models, results, and figures produced in either [PDF](CrossSpecGraph_Final.pdf) or [HTML](CrossSpecGraph_Final.html) format. Note, you will have to download the HTML file to visualize the data output. 
 
@@ -65,7 +65,7 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
   ylab('y_DependentVariable_Title')
 ```
 
-# Supplementary Materials: 
+## Supplementary Materials: 
 
 Table of RNAseq Samples included in Analysis. The raw file is available for download at link to the left, or in table above.
 
