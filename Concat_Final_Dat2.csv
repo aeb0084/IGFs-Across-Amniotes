@@ -1,0 +1,83 @@
+"individual","Organism","Category","group","Phylogenetic_Cat","IGF1.plot","IGF2.plot"
+"Rufous-fronted Bushtit","Aegithalos iouschistos","Reptilia","Aves","Aves",0.044,0.956
+"Cottonmouth ","Agkistrodon piscivorus","Reptilia","Squamates","Snake",0.082,0.918
+"Giant Panda","Ailuropoda melanoleuca","Mammalia","Eutheria","Carnivora",0.1225,0.8775
+"American Alligator","Alligator mississippiensis","Reptilia","Crocodilian","Crocodilian",0.02,0.98
+"Mallard ","Anas platyrhynchos","Reptilia","Aves","Aves",0.381,0.619
+"Brown Anole","Anolis sagrei","Reptilia","Squamates","Lizard",0.475,0.525
+"Sichuan Partridge","Arborophila rufipectus","Reptilia","Aves","Aves",0,1
+"Ruby-throated Hummingbird","Archilochus colubris","Reptilia","Aves","Aves",0.01,0.99
+"Jamaican Fruit Bat","Artibeus jamaicensis","Mammalia","Eutheria","Chiroptera",0.929,0.071
+"Four-toed Hedgehog","Atelerix albiventris","Mammalia","Eutheria","Eulipotyphla",0.9925,0.0075
+"Brown Basilisk","Basiliscus vittatus","Reptilia","Squamates","Lizard",0.945,0.055
+"Cow","Bos taurus","Mammalia","Eutheria","Cetartiodactyla",0.19475,0.80525
+"Water Buffalo","Bubalus bubalis","Mammalia","Eutheria","Cetartiodactyla",0.05425,0.94575
+"Muscovy Duck","Cairina moschata","Reptilia","Aves","Aves",0.1185,0.8815
+"Common Marmoset","Callithrix jacchus","Mammalia","Eutheria","Primate",0.51825,0.48175
+"New Guinea Ground Boa","Candoia aspera","Reptilia","Squamates","Snake",0.096,0.904
+"Dog","Canis lupus familiaris","Mammalia","Eutheria","Carnivora",0.00075,0.99925
+"Western Pygmy Possum","Cercartetus concinnus","Mammalia","Methatheria","Didelphidae",0.183,0.817
+"Common Snapping Turtle","Chelydra serpentina","Reptilia","Testudines","Testudines",0,1
+"Green Monkey","Chlorocebus sabaeus","Mammalia","Eutheria","Primate",0.601333333333333,0.398666666666667
+"Striped Possum","Dactylopsila trivirgata","Mammalia","Methatheria","Didelphidae",0.61,0.39
+"Nine-banded Armadillo","Dasypus novemcinctus","Mammalia","Eutheria","Xenarthra",0.4995,0.5005
+"Emu","Dromaius novaehollandiae","Reptilia","Aves","Aves",0.746,0.254
+"Lesser Hedgehog Tenrec","Echinops telfairi","Mammalia","Eutheria","Afrosoricide",0.193,0.807
+"Palestine Saw-scaled Viper","Echis coloratus","Reptilia","Squamates","Snake",0.199,0.801
+"Southern Alligator Lizard","Elgaria multicarinata","Reptilia","Squamates","Lizard",0.038,0.962
+"Horse","Equus caballus","Mammalia","Eutheria","Perissodactyla",0.5045,0.4955
+"European Hedgehog","Erinaceus europaeus","Mammalia","Eutheria","Eulipotyphla",1,0
+"Common Leopard Gecko","Eublepharis macularius","Reptilia","Squamates","Lizard",0.55,0.45
+"Little Greenbul","Eurillas virens","Reptilia","Aves","Aves",0.198,0.802
+"Cat","Felis catus","Mammalia","Eutheria","Carnivora",0.65675,0.34325
+"Collared Flycatcher","Ficedula albicollis","Reptilia","Aves","Aves",0.3815,0.6185
+"European Pied Flycatcher","Ficedula hypoleuca","Reptilia","Aves","Aves",0.433,0.567
+"Chicken","Gallus gallus","Reptilia","Aves","Aves",0.1025,0.8975
+"Long-nosed Leopard Lizard","Gambelia wislizenii","Reptilia","Squamates","Lizard",0.666,0.334
+"Human","Homo sapiens","Mammalia","Eutheria","Primate",0.499333333333333,0.500666666666667
+"Green Iguana","Iguana iguana","Reptilia","Squamates","Lizard",0.537,0.463
+"Southern Brown Bandicoot","Isoodon obesulus","Mammalia","Methatheria","Peramelidae",0.098,0.902
+"Mountain Hare","Lepus timidus","Mammalia","Eutheria","Lagomorpha",0.44025,0.55975
+"Bengalese Finch","Lonchura striata domestica","Reptilia","Aves","Aves",0.984,0.016
+"Grey Crested Tit","Lophophanes dichrous","Reptilia","Aves","Aves",0.047,0.953
+"Rhesus Macaque","Macaca mulatta","Mammalia","Eutheria","Primate",0.636,0.364
+"Diamondback Terrapin","Malaclemys terrapin terrapin","Reptilia","Testudines","Testudines",0.023,0.977
+"Sunda Pangolin","Manis javanica","Mammalia","Eutheria","Pholidota",0.07325,0.92675
+"Gray short-tailed oppossum","Monodelphis domestica","Mammalia","Methatheria","Didelphidae",0.995,0.005
+"Ghost-faced Bat","Mormoops megalophylla","Mammalia","Eutheria","Chiroptera",0.469333333333333,0.530666666666667
+"House Mouse","Mus musculus","Mammalia","Eutheria","Rodentia",0.999567567567568,0.000432432432432432
+"House Mouse","Mus musculus domesticus","Mammalia","Eutheria","Rodentia",0.999948717948718,5.12820512820513e-05
+"Hairy-legged Myotis","Myotis keaysi","Mammalia","Eutheria","Chiroptera",0.616333333333333,0.383666666666667
+"Chilean Tinamou","Nothoprocta perdicaria","Reptilia","Aves","Aves",0,1
+"Broad-eared Bat","Nyctinomops laticaudatus","Mammalia","Eutheria","Chiroptera",0.976666666666667,0.0233333333333333
+"Platypus","Ornithorhynchus anatinus","Mammalia","Monotreme","Monotreme",0.202,0.798
+"Sheep","Ovis aries","Mammalia","Eutheria","Cetartiodactyla",0.23925,0.76075
+"Yellow-bellied Tit","Pardaliparus venustulus","Reptilia","Aves","Aves",0.184333333333333,0.815666666666667
+"Chinese Softshell Turtle","Pelodiscus sinensis","Reptilia","Testudines","Testudines",0.196,0.804
+"West African Mud Turtle","Pelusios castaneus","Reptilia","Testudines","Testudines",0.019,0.981
+"Long-nosed Bandicoot","Perameles nasuta","Mammalia","Methatheria","Peramelidae",0.037,0.963
+"Rufous-vented Tit","Periparus rubidiventris","Reptilia","Aves","Aves",0.082,0.918
+"Lesser Dog-like Bat","Peropteryx macrotis","Mammalia","Eutheria","Chiroptera",0.419666666666667,0.580333333333333
+"Marsh Tit","Poecile palustris","Reptilia","Aves","Aves",0.214,0.786
+"Central Bearded Dragon","Pogona vitticeps","Reptilia","Squamates","Lizard",0.007,0.993
+"Black Flying Fox","Pteropus alecto","Mammalia","Eutheria","Chiroptera",0.8585,0.1415
+"Brown Rat","Rattus norvegicus","Mammalia","Eutheria","Rodentia",0.99925,0.00075
+"Egyptian Fruit Bat","Rousettus aegyptiacus","Mammalia","Eutheria","Chiroptera",0.993,0.007
+"Tasmanian devil","Sarcophilus harrisii","Mammalia","Methatheria","Dasyuridae",0.084,0.916
+"Eastern Fence Lizard","Sceloporus undulatus","Reptilia","Squamates","Lizard",0.093,0.907
+"Little Brown Skink","Scincella lateralis","Reptilia","Squamates","Lizard",0.002,0.998
+"Atlantic Canary","Serinus canaria","Reptilia","Aves","Aves",0.373,0.627
+"Common Musk Turtle","Sternotherus odoratus","Reptilia","Testudines","Testudines",0.017,0.983
+"Asian House Shrew","Suncus murinus","Mammalia","Eutheria","Eulipotyphla",1,0
+"Wild Boar","Sus scrofa","Mammalia","Eutheria","Cetartiodactyla",0.0195,0.9805
+"Mexican Free-tailed Bat","Tadarida brasiliensis","Mammalia","Eutheria","Chiroptera",0.956666666666667,0.0433333333333333
+"Asian Grass Lizard","Takydromus sexlineatus","Reptilia","Squamates","Lizard",0.033,0.967
+"Common Box Turtle","Terrapene carolina","Reptilia","Testudines","Testudines",0.013,0.987
+"Sierra Garter Snake","Thamnophis couchii","Reptilia","Squamates","Snake",0.054,0.946
+"Western terrestrial garter snake","Thamnophis elegans","Reptilia","Squamates","Snake",0.0265,0.9735
+"Red-eared Slider","Trachemys scripta elegans","Reptilia","Testudines","Testudines",0.036,0.964
+"Northern Treeshrew","Tupaia belangeri","Mammalia","Eutheria","Scandentia",0.292,0.708
+"Brown Bear","Ursus arctos","Mammalia","Eutheria","Carnivora",0.46325,0.53675
+"Common Wombat","Vombatus ursinus","Mammalia","Methatheria","Diprotodontia",0.1195,0.8805
+"Sunbeam Snake","Xenopeltis unicolor","Reptilia","Squamates","Snake",0.045,0.955
+"White-throated Sparrow","Zonotrichia albicollis","Reptilia","Aves","Aves",0.8215,0.1785

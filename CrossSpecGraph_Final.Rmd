@@ -1,0 +1,404 @@
+---
+title: "CrossSpecies Plot"
+output:
+  pdf_document: default
+  html_document: default
+---
+# Load Necessary Packages
+```{r, warning=F, message=F}
+
+#Load the following packages to run the rest of the script.
+library(tidyverse)
+library(viridis)
+library(Rmisc)
+library(ggplot2)
+library(nlme)
+library(arsenal)
+library(janitor)
+library(ggforce)
+library(ggalt)
+library(dplyr)
+library(ggalt)
+library(ggforce)
+
+```
+
+# Introduction Plot: Bias in IGF Publication over Time
+```{r}
+#Read in data set with number of publications per year
+pub=read.csv("Timeline_IGFs_pub.csv")
+#Remove year "2021" as the year is not yet complete
+pub=subset(pub, Year != "2021")
+
+#Plot number of publications per year from ~1970 to 2020 by IGF type
+ggplot() + 
+  #In solid lines, plot the total number of IGF1 and IGF2 publications per year, excluding Reviews
+  geom_line(data=pub, aes(x = Year, y = IGF1), color= "orange2", fill = "orange2", size = 1,  alpha=1) +
+  geom_line(data=pub, aes(x = Year, y = IGF2), color= "skyblue4", fill="skyblue4",  size = 1,  alpha=1) +
+  #In dashed lines, plot the total number of IGF1 and IGF2 publications per year, excluding Reviews, Developmental Studies, and Cancer Studies
+  geom_line(data=pub, aes(x = Year, y = Post.natal_no.cancer_IGF1), color= "orange2", size = 1, linetype= "twodash") +
+  geom_line(data=pub, aes(x = Year, y = Post.natal_no.cancer_IGF2), color= "skyblue4", size = 1, linetype= "twodash") +
+  #In shaded lines, plot the total number of IGF1 and IGF2 publications per year, excluding Reviews, and those performed in rodents/humans
+  geom_area(data=pub, aes(x = Year, y = Non.model_IGF1), color= "orange2", fill="orange2", size = 1, alpha=0.4, linetype= "solid") +
+  geom_area (data=pub, aes(x = Year, y = Non.model_IGF2), color= "skyblue4", fill="skyblue4", size = 1, alpha=0.4, linetype= "solid")  +
+  #Change axis titles and bold the text
+  ylab("Number of Publications") +
+  xlab ("Year") +
+  theme(axis.title = element_text(face= "bold", size= 12))
+
+```
+
+# Plylogenetic RNAseq Analysis
+## Data Curation of RNAseq Data
+```{R}
+
+# Upload dataset containing all RNAseq Counts in CSV format
+data2 <- read.csv("MetaData_Counts_Cleaned.csv")
+#Get a count of the total number of unique species that will be included in the data set.
+count=count(unique(data2$Organism))
+
+#aggregate data to get average IGF1 for each species (combining all individuals of the same species)
+IGF1=summarySE(data = data2, measurevar="IGF1_Proportion", groupvars = c("Organism", "Common.Name", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+#aggregate data to get average IGF2 for each species (combining all individuals of the same species)
+IGF2=summarySE(data = data2, measurevar="IGF2_Proportion", groupvars = c("Organism", "Common.Name", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+#Merge IGF1 and IGF2 files together by the organisms common name.
+data=merge(x = IGF1, y = IGF2, by = "Organism")
+
+#Make new data frame including only the common name, organism, subcategory for organism organization, IGF1 value, and IGF2 value
+data=data.frame(data$Common.Name.x, data$Organism, data$Category.x, data$Subcategory.x, data$Phylogenetic_Cat.x, data$IGF1_Proportion, data$IGF2_Proportion)
+
+#rename columns for clarity following merge
+names(data)[names(data) == "data.Category.x"] <- "Category"
+names(data)[names(data) == "data.Common.Name.x"] <- "individual"
+names(data)[names(data) == "data.Subcategory.x"] <- "group"
+names(data)[names(data) == "data.IGF1_Proportion"] <- "IGF1.plot"
+names(data)[names(data) == "data.IGF2_Proportion"] <- "IGF2.plot"
+names(data)[names(data) == "data.Organism"] <- "Organism"
+names(data)[names(data) == "data.Phylogenetic_Cat.x"] <- "Phylogenetic_Cat"
+
+#take another count to make sure you did not lose data in the merging process
+count2=count(unique(data$Organism))
+#compare data frames to see what/if anything has changed
+summary(comparedf(count, count2, by = "x"))
+
+#Write file to CSV to preserve data set used in all following analyses
+write.csv(data,"Concat_Final_Dat2.csv", row.names = FALSE)
+
+#Format data frame for use in Proportions Plot. Rename columns, and then reformat to have IGF1.plot and IGF2.plot combine into a single column by species. The new column will be called "Value". This is used for proportional barplots.
+data3=data.frame(data$individual,data$group,data$IGF1.plot, data$IGF2.plot)
+names(data3)[names(data3) == "data.individual"] <- "individual"
+names(data3)[names(data3) == "data.group"] <- "group"
+names(data3)[names(data3) == "data.IGF1.plot"] <- "IGF1.plot"
+names(data3)[names(data3) == "data.IGF2.plot"] <- "IGF2.plot"
+names(data)[names(data) == "data.Organism"] <- "Organism"
+  #Remove all rows containing NA values
+data3=data3[complete.cases(data3), ]
+  #this line of code reformats data to have IGF1 and IGF2 plot values in a single column. Note, there can only be these four variables in data3 for this to work  properly as written.
+data3 <- data3 %>% gather(key = "observation", value="value", -c(1,2)) 
+```
+
+## Production of Stacked Barplot
+```{R}
+
+#produce a CSV file containing the values created in dataframe "data3"
+write.csv(data3, "datafile3.csv",row.names = FALSE)
+
+#Using the phylogenetic tree produced representing all species included in the analysis, the CSV file was adapted to include a column called "plotID". This column orders the data to match the order of the phylogenetic tree. This was done in excel directly. 
+p3ID=read.csv("datafile3_plotID.csv")
+
+#Produce stacked barplot showing the proportion of IGF1 and IGF2 expression within each species, and orders them based on their phylogenetic relationships to be matched with a phylogenetic tree.
+  p4=ggplot(p3ID, aes(fill=observation, y=Percentage, x=plotID)) +
+  geom_bar(position="stack", stat="identity") +  scale_fill_manual(values=c("orange2", "skyblue4")) +
+coord_flip() +
+  scale_x_discrete(lim=rev) +
+ theme(axis.text.y = element_blank(), axis.title.y = element_blank())
+
+#Save the image as a PNG file for use in BioRender for final figure production
+  #ggsave(p4, file="phylo_barplot.nc.png", width=3, height=9, dpi=600)
+
+
+```
+
+# Quantitative Cross-Species Analysis
+```{r}
+#Read in data and format data/subset data
+sp=read.csv("Species_Combined_edited_2.csv")
+#Set ages to order chronologically
+sp$Age = factor(sp$Age, levels=c('Embryonic','Juvenile','Adult'))
+#Set custom dodge location for lining us data with grouped barplots
+dodge <- position_dodge(width = 0.6)
+#Set species order for facet plotting
+sp$Species=factor(sp$Species, levels=c('Zebra Finch', "House Sparrow", "E. Fence Lizard", "Brown Anole","House Mouse"))
+
+#Set values to scientific notation on y-axis
+fancy_scientific <- function(l) {
+     # turn in to character string in scientific notation
+     l <- format(l, scientific = TRUE)
+     # quote the part before the exponent to keep all the digits
+     l <- gsub("^(.*)e", "'\\1'e", l)
+     # turn the 'e+' into plotmath format
+     l <- gsub("e", "%*%10^", l)
+     # return this as an expression
+     parse(text=l)
+}
+```
+
+## Facet plots of qPCR data
+```{r}
+#Find average copy number for each age group, at each gene, in each individual for each species. This averages across qpcr triplicates and provides SD
+overall.SQ=summarySE(sp, measurevar = "SQ", groupvars = c("Species","Individual", "Target", "Age"))
+
+#Plot IGF1 and IGF2 expression by age group, faceted by species
+p1=ggplot(sp, aes(x=Age, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+geom_point(data = overall.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+     scale_y_continuous(labels=fancy_scientific) +
+  theme_bw() +
+  facet_wrap(~Species, scales="free", nrow=4) +
+  theme(strip.text = element_text(size=14, face="bold"),
+        axis.text.x = element_text(size=12)) 
+p1
+
+#Save as a PNG file for final figure production in BioRender
+#ggsave(p1, file="qPCR_facet.nc.png", width=6, height=9, dpi=600)
+
+```
+
+## Anoles Developmental and Juvenile Inset Plot
+```{r}
+#Subset data set to include only brown anoles
+BA=subset(sp, Species == "Brown Anole")
+#Subset data to include developmental and juvenile timepoints (excluding adulthood)
+devan=subset(BA, Age != 'Adult')
+#Calculate average copy number for each age and gene per individual. This averages across qpcr triplicates and provides SD
+devan.SQ=summarySE(devan, measurevar = "SQ", groupvars = c("Individual", "Target", "Age"))
+
+#plot copy number by age. This plot is used as an inset in the plot including all timepoints. These are difficult to see in the embryonic-adult graph as the adult expression is significantly higher than any other timepoint.
+p2=ggplot(devan, aes(x=Age, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+geom_point(data = devan.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+     scale_y_continuous(labels=fancy_scientific) +
+  theme(axis.text.x = element_text(size=12))
+
+
+p2
+
+#Save file as PNG for final figure production in BioRender
+#ggsave(p2, file="BA_dev_inset.nc.png", width=9, height=7, dpi=600)
+
+
+```
+
+## Graph of adult data by sex (when available)
+```{r}
+#Subset data to include only adult timepoint of species with both  male and female individuals
+sex=subset(sp, Age == "Adult"  & Species != "House Mouse" & Species != "E. Fence Lizard" & Species != "House Sparrow")
+#Obtain average copy number of IGF1 and IGF2 for each individual. This accounts for qpcr triplicates and calculates SD
+sex.SQ=summarySE(sex, measurevar = "SQ", groupvars = c("Individual","Species", "Sex", "Target"))
+
+#Plot IGF1 and IGF2 expression by sex, faceted by species
+p7=ggplot(sex, aes(x=Sex, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Sex") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+    geom_point(data = sex.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+  geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size=12)) +
+  facet_wrap(~Species, scales="free") +
+    theme(strip.text = element_text(size=14, face="bold")) 
+  
+
+p7
+
+#Save image as PNG for final figure production in BioRender
+#ggsave(p7, file="Sex_interactions.nc.png", width=9, height=5, dpi=600)
+
+```
+
+## Mouse Subset Data Plots by Strain (qPCR Data)
+```{r}
+
+#Subset data to include only mouse samples
+mouse=subset(sp, Species == "House Mouse")
+
+#Reorder Age in mouse samples for plotting
+mouse$Age_sub = factor(mouse$Age_sub, levels=c('Embryonic.Lab','Adult.Lab','Juvenlie.Wild', 'Adult.Wild'))
+#Obtain average copy number of IGF1 and IGF2 for each individual. This accounts for qpcr triplicates and calculates SD
+mean.SQ=summarySE(mouse, measurevar = "SQ", groupvars = c("Individual", "Target", "Age_sub"))
+
+#Plot IGF1 and IGF2 expression by age, first the inbred strains, and then the outbred strains
+p5=ggplot(mouse, aes(x=Age_sub, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+    geom_point(data = mean.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+    theme_bw() +
+  theme(axis.text.x = element_text(size=12)) 
+
+p5
+
+#Save image as PNG for final figure production in BioRender
+#ggsave(p5, file="Mouse_Strain.nc.png", width=9, height=7, dpi=600)
+
+```
+
+## Mouse Subset Data Plots by Strain (RNAseq)
+```{r}
+
+#aggregate data to get average IGF1 for each species (combining all individuals of the same species)
+IGF1.m=summarySE(data = data2, measurevar="IGF1.plot", groupvars = c("Strain", "Organism", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+IGF2.m=summarySE(data = data2, measurevar="IGF2.plot", groupvars = c("Strain", "Organism", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+#Merge IGF1 and IGF2 values into a single dataframe by Strain
+dat=merge(x = IGF1.m, y = IGF2.m, by = "Strain", all.x=TRUE)
+
+#Isolate columns including strain, organism, IGF1 and IGF2 values
+dat=data.frame(dat$Strain, dat$Organism.x ,dat$IGF1.plot, dat$IGF2.plot)
+#Remove rows with NA values
+dat=dat[complete.cases(dat), ]
+
+#Rename columns for ease of interpretation
+names(dat)[names(dat) == "dat.Strain"] <- "Strain"
+names(dat)[names(dat) == "dat.IGF1.plot"] <- "IGF1"
+names(dat)[names(dat) == "dat.IGF2.plot"] <- "IGF2"
+
+#Reformat data frame to have IGF1 and IGF2 in a single column named "gene", and the expression levels in a column called "value"
+dat3 <- dat %>% gather(key = "Gene", value="value", -c(1,2)) 
+
+#Plot the IGF expression across strains
+p6=ggplot(dat3, aes(fill=Gene, y=value, x=Strain)) +
+  geom_bar(position="stack", stat="identity") +  scale_fill_manual(values=c("orange2", "skyblue4")) +
+coord_flip() +
+  scale_x_discrete(lim=rev) +
+  theme(axis.title.y = element_blank(),
+       legend.position = "top")
+
+p6
+
+#Save image as PNG for final figure production in BioRender
+#ggsave(p6, file="Mouse_Strain_RNAseq.nc.png", width=5, height=7, dpi=600)
+
+```
+
+
+## Statistical Analysis
+### ZebraFinch Statistics
+```{r}
+#Zebra Finch Statistics
+sp=read.csv("Species_Combined_edited_2.csv")
+
+#Subset data to include only zebra finch samples
+zf=subset(sp, Species == "Zebra Finch")
+
+#Create a data frame for each age class
+zf.emb=subset(zf, Age=="Embryonic")
+zf.juv=subset(zf, Age=="Juvenile")
+zf.ad=subset(zf, Age=="Adult")
+
+#Run linear model on relative IGF1 and IGF2 expression levels at each age class, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=zf.emb))
+summary(lme(SQ~Target, random=~1|Content, data=zf.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=zf.ad)) 
+
+#Subset adult samples by sex
+zf.ad.m=subset(zf.ad, Sex =="Male")
+zf.ad.f=subset(zf.ad, Sex=="Female")
+
+#Run linear model on relative IGF1 and IGF2 expression levels in each sex, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=zf.ad.m)) 
+summary(lme(SQ~Target, random=~1|Content, data=zf.ad.f)) 
+
+```
+
+### House Sparrow Statistics
+```{r}
+#Subset data to include only house sparrow samples
+hs=subset(sp, Species == "House Sparrow")
+
+#Create a data frame for each age class
+hs.juv=subset(hs, Age=="Juvenile")
+hs.ad=subset(hs, Age=="Adult")
+
+#Run linear model on relative IGF1 and IGF2 expression levels at each age class, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=hs.juv))
+summary(lme(SQ~Target, random=~1|Content, data=hs.ad)) 
+
+```
+
+### Sceloperus Statistics
+```{r}
+#Subset data to include only eastern fence lizard samples
+scelop=subset(sp, Species == "E. Fence Lizard")
+
+#Create a data frame for each age class
+sc.juv=subset(scelop, Age=="Juvenile")
+sc.ad=subset(scelop, Age=="Adult")
+
+#Run linear model on relative IGF1 and IGF2 expression levels at each age class, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=sc.juv))
+summary(lme(SQ~Target, random=~1|Content, data=sc.ad)) 
+
+```
+### BA Statistics
+```{r}
+#Subset data to include only brown anole samples
+anole=subset(sp, Species == "Brown Anole")
+
+#Create a data frame for each age class
+a.emb=subset(anole, Age=="Embryonic")
+a.juv=subset(anole, Age=="Juvenile")
+a.ad=subset(anole, Age=="Adult")
+
+#Run linear model on relative IGF1 and IGF2 expression levels at each age class, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=a.emb)) 
+summary(lme(SQ~Target, random=~1|Content, data=a.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=a.ad))
+
+#Subset adult samples by sex
+a.ad.m=subset(a.ad, Sex =="Male")
+a.ad.f=subset(a.ad, Sex=="Female")
+
+#Run linear model on relative IGF1 and IGF2 expression levels in each sex, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=a.ad.m)) 
+summary(lme(SQ~Target, random=~1|Content, data=a.ad.f)) 
+
+```
+
+### Mouse Statistics
+```{r}
+#Subset data to include only mouse samples
+mouse=subset(sp, Species == "House Mouse")
+
+#Create a data frame for each age class
+m.emb=subset(mouse, Age=="Embryonic")
+m.juv=subset(mouse, Age=="Juvenile")
+m.ad=subset(mouse, Age=="Adult")
+
+#Run linear model on relative IGF1 and IGF2 expression levels at each age class, using a random variable "Content" to account for triplicate samples in qPCR analysis.
+summary(lme(SQ~Target, random=~1|Content, data=m.emb))
+summary(lme(SQ~Target, random=~1|Content, data=m.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=m.ad))
+
+```

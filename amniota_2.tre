@@ -1,0 +1,246 @@
+(
+  (
+    "Platypus",
+    (
+      (
+        (
+          (
+            (
+              "Western Pygmy Possum",
+              "Striped Possum"
+            )"Possums",
+            "Common Wombat"
+          )"Diprodontia",
+          (
+            (
+              "Long-nosed Bandicoot",
+              "Southern Brown Bandicoot"
+            )"Peramelemorphia",
+            "Tasmanian Devil"
+          )"Australidelphia-subgroup"
+        )"Didelphimorphia",
+        "Gray Short-tailed Oppossum"
+      )"Metatheria",
+      (
+        (
+          "Lesser Hedgehog Tenrec",
+          (
+            "9-banded armadillo"
+          )
+        )"Atlantogenata",
+        (
+          (
+            (
+              "Asian House Shrew",
+              (
+                "4-toed Hedgehog",
+                "European Hedgehog"
+              )
+            )"Moles",
+            (
+              (
+                "Asian fruit-eating Bat",
+                "Black Flying Fox"
+              )"Pteropidae",
+              (
+                "Lesser Dog-like Bat",
+                (
+                  (
+                    "Ghost-faced Bat",
+                    "Jamaican Fruit Bat"
+                  )"node",
+                  (
+                    "Broad-eared Bat",
+		    "Mexican-free Tailed Bat",
+                    "Hairy-legged Myotis Bat"
+                  )
+                )
+              )
+            )"Bats"
+          )"moles and bats",
+          (
+            (
+              (
+                "Pangolin",
+                (
+                  "Cat",
+                  (
+                    "Dog",
+                    (
+                      "Brown Bear",
+                      "Giant Panda"
+                    )
+                  )
+                )"Carnivores"
+              )"node",
+              (
+                "Horse",
+                (
+                  "Wild Boar",
+                  (
+                    "Sheep",
+                    (
+                      "Cow",
+                      "Water Buffalo"
+                    )
+                  )
+                )
+              )
+            )"node2",
+            (
+              (
+                "Norther Tree Shrew",
+                (
+                  "Common Marmoset",
+                  (
+                    "Green Monkey",
+                    (
+                      "Rhesus Macaque",
+                      "Humans"
+                    )
+                  )
+                )
+              )"Primates",
+              (
+                "Mountain Hare",
+                (
+                  "Brown Rat",
+                  "House Mouse"
+                )
+              )
+            )
+          )
+        )
+      )"Eutheria"
+    )"Theria"
+  )"mammalia",
+  (
+    (
+      "Leopard Gecko",
+      (
+        "Little brown skink",
+        (
+          "Asian Grass Lizard",
+          (
+            (
+              "Bearded Dragon",
+              (
+                "Green Iguana",
+                (
+                  (
+                    (
+                      "Brown Anole",
+                      "Brown Basilisk"
+                    )"node",
+                    (
+                      "Eastern Fence Lizard",
+                      "Long-nosed Leopard Lizard"
+                    )
+                  )
+                )
+              )
+            )"iguania",
+            (
+              "Southern Alligator Lizard",
+              (
+                (
+                  "Sunbeam Snake",
+                  "New Guinea Ground Boa"
+                )"node",
+                (
+                  (
+                    "Sierra Garter Snake",
+                    "Western Terrestrial Garter Snake"
+                  )"Thamnophis",
+                  (
+                    "Cottonmouth",
+                    "Palestine Saw-scaled Viper"
+                  )
+                )
+              )"Snakes"
+            )"toxicofera"
+          )
+        )
+      )
+    )"squamata",
+    (
+      (
+        "West African Mud Turtle",
+        (
+          "Chinese Softshell",
+          (
+            (
+              "Snapping Turtle",
+              "Common Musk Turtle"
+            )"node",
+            (
+              "Diamondback Terrapin",
+              "Red-eared Slider",
+	      "Common Box Turtle"
+            )"Emydidae"
+          )
+        )
+      )"testudines",
+      (
+        (
+          "Alligator",
+          (
+            (
+              "Emu",
+              "Chilean Tinamou"
+            )"Paleognathae",
+            (
+              (
+                (
+                  "Chicken",
+                  "Sichuan Partridge"
+                )"Galliformes",
+                (
+                  "Mallard",
+                  "Muscovy duck"
+                )"Anseriformes"
+              )"Galloanserae",
+              (
+                (
+                  "Ruby-throated hummingbird",
+                  
+                    (
+                      (
+                        (
+                          (
+                            "Collared Flycatcher",
+                            "European Pied Flycatcher"
+                          )"node1",
+                          (
+                            "Bengalese Finch",
+                            (
+                              "Atlantic Canary",
+                              "White Crowned Sparrow"
+                            )
+                          )
+                        )"node2",
+                        (
+                          (
+                            "Little Greenbull",
+                            "Rufous-fronted Bush Tit"
+                          )"node3",
+                            (
+                              "Yellow-bellied Tit",
+                              (
+                                "Rufous-vented Tit",
+                                "Marsh Tit",
+                                "Grey Crested Tit"
+                              )
+                            )
+                        )
+                    )"Passeriformes"
+                  )
+                )
+              )
+            )
+          )
+        )"archosauria"
+      )
+    )
+  )
+);

@@ -1,0 +1,163 @@
+individual,group,observation,value,Percentage,NUM_ID,plotID
+American Alligator,Crocodilian,IGF1.plot,0.02,2,63,CK
+Asian Grass Lizard,Squamates,IGF1.plot,0.033,3.3,42,BP
+Asian House Shrew,Eutheria,IGF1.plot,1,100,11,AK
+Atlantic Canary,Aves,IGF1.plot,0.373,37.3,75,CW
+Bengalese Finch,Aves,IGF1.plot,0.984,98.4,73,CU
+Black Flying Fox,Eutheria,IGF1.plot,0.8585,85.85,14,AN
+Broad-eared Bat,Eutheria,IGF1.plot,0.976666667,97.6666667,21,AU
+Brown Anole,Squamates,IGF1.plot,0.475,47.5,48,BV
+Brown Basilisk,Squamates,IGF1.plot,0.945,94.5,47,BU
+Brown Bear,Eutheria,IGF1.plot,0.46325,46.325,39,BM
+Brown Rat,Eutheria,IGF1.plot,0.99925,99.925,24,AX
+Cat,Eutheria,IGF1.plot,0.65675,65.675,36,BJ
+Central Bearded Dragon,Squamates,IGF1.plot,0.007,0.7,43,BQ
+Chicken,Aves,IGF1.plot,0.1025,10.25,69,CQ
+Chilean Tinamou,Aves,IGF1.plot,0,0,64,CL
+Chinese Softshell Turtle,Testudines,IGF1.plot,0.196,19.6,57,CE
+Collared Flycatcher,Aves,IGF1.plot,0.3815,38.15,72,CT
+Common Box Turtle,Testudines,IGF1.plot,0.013,1.3,60,CH
+Common Leopard Gecko,Squamates,IGF1.plot,0.55,55,40,BN
+Common Marmoset,Eutheria,IGF1.plot,0.51825,51.825,26,AZ
+Common Musk Turtle,Testudines,IGF1.plot,0.017,1.7,58,CF
+Common Snapping Turtle,Testudines,IGF1.plot,0,0,59,CG
+Common Wombat,Methatheria,IGF1.plot,0.1195,11.95,6,AF
+Cottonmouth ,Squamates,IGF1.plot,0.082,8.2,53,CA
+Cow,Eutheria,IGF1.plot,0.19475,19.475,34,BH
+Diamondback Terrapin,Testudines,IGF1.plot,0.023,2.3,62,CJ
+Dog,Eutheria,IGF1.plot,0.00075,0.075,37,BK
+Eastern Fence Lizard,Squamates,IGF1.plot,0.093,9.3,46,BT
+Egyptian Fruit Bat,Eutheria,IGF1.plot,0.993,99.3,15,AO
+Emu,Aves,IGF1.plot,0.746,74.6,65,CM
+European Hedgehog,Eutheria,IGF1.plot,1,100,12,AL
+European Pied Flycatcher,Aves,IGF1.plot,0.433,43.3,71,CS
+Four-toed Hedgehog,Eutheria,IGF1.plot,0.9925,99.25,13,AM
+Ghost-faced Bat,Eutheria,IGF1.plot,0.469333333,46.9333333,18,AR
+Giant Panda,Eutheria,IGF1.plot,0.1225,12.25,38,BL
+Gray short-tailed oppossum,Methatheria,IGF1.plot,0.995,99.5,2,AB
+Green Iguana,Squamates,IGF1.plot,0.537,53.7,44,BR
+Green Monkey,Eutheria,IGF1.plot,0.601333333,60.1333333,27,BA
+Grey Crested Tit,Aves,IGF1.plot,0.047,4.7,79,DA
+Hairy-legged Myotis,Eutheria,IGF1.plot,0.616333333,61.6333333,19,AS
+Horse,Eutheria,IGF1.plot,0.5045,50.45,30,BD
+House Mouse,Eutheria,IGF1.plot,0.999567568,99.9567568,23,AW
+Human,Eutheria,IGF1.plot,0.499333333,49.9333333,28,BB
+Jamaican Fruit Bat,Eutheria,IGF1.plot,0.929,92.9,17,AQ
+Lesser Dog-like Bat,Eutheria,IGF1.plot,0.419666667,41.9666667,16,AP
+Lesser Hedgehog Tenrec,Eutheria,IGF1.plot,0.193,19.3,9,AI
+Little Brown Skink,Squamates,IGF1.plot,0.002,0.2,41,BO
+Little Greenbul,Aves,IGF1.plot,0.198,19.8,77,CY
+Long-nosed Bandicoot,Methatheria,IGF1.plot,0.037,3.7,5,AE
+Long-nosed Leopard Lizard,Squamates,IGF1.plot,0.666,66.6,45,BS
+Mallard ,Aves,IGF1.plot,0.381,38.1,67,CO
+Marsh Tit,Aves,IGF1.plot,0.214,21.4,80,DB
+Mexican Free-tailed Bat,Eutheria,IGF1.plot,0.956666667,95.6666667,20,AT
+Mountain Hare,Eutheria,IGF1.plot,0.44025,44.025,22,AV
+Muscovy Duck,Aves,IGF1.plot,0.1185,11.85,66,CN
+New Guinea Ground Boa,Squamates,IGF1.plot,0.096,9.6,50,BX
+Nine-banded Armadillo,Eutheria,IGF1.plot,0.4995,49.95,10,AJ
+Northern Treeshrew,Eutheria,IGF1.plot,0.292,29.2,25,AY
+Palestine Saw-scaled Viper,Squamates,IGF1.plot,0.199,19.9,52,BZ
+Platypus,Monotreme,IGF1.plot,0.202,20.2,1,AA
+Red-eared Slider,Testudines,IGF1.plot,0.036,3.6,61,CI
+Rhesus Macaque,Eutheria,IGF1.plot,0.636,63.6,29,BC
+Ruby-throated Hummingbird,Aves,IGF1.plot,0.01,1,70,CR
+Rufous-fronted Bushtit,Aves,IGF1.plot,0.044,4.4,76,CX
+Rufous-vented Tit,Aves,IGF1.plot,0.082,8.2,81,DC
+Sheep,Eutheria,IGF1.plot,0.23925,23.925,32,BF
+Sichuan Partridge,Aves,IGF1.plot,0,0,68,CP
+Sierra Garter Snake,Squamates,IGF1.plot,0.054,5.4,55,CC
+Southern Alligator Lizard,Squamates,IGF1.plot,0.038,3.8,49,BW
+Southern Brown Bandicoot,Methatheria,IGF1.plot,0.098,9.8,4,AD
+Striped Possum,Methatheria,IGF1.plot,0.61,61,7,AG
+Sunbeam Snake,Squamates,IGF1.plot,0.045,4.5,51,BY
+Sunda Pangolin,Eutheria,IGF1.plot,0.07325,7.325,35,BI
+Tasmanian devil,Methatheria,IGF1.plot,0.084,8.4,3,AC
+Water Buffalo,Eutheria,IGF1.plot,0.05425,5.425,33,BG
+West African Mud Turtle,Testudines,IGF1.plot,0.019,1.9,56,CD
+Western Pygmy Possum,Methatheria,IGF1.plot,0.183,18.3,8,AH
+Western terrestrial garter snake,Squamates,IGF1.plot,0.0265,2.65,54,CB
+White-throated Sparrow,Aves,IGF1.plot,0.8215,82.15,74,CV
+Wild Boar,Eutheria,IGF1.plot,0.0195,1.95,31,BE
+Yellow-bellied Tit,Aves,IGF1.plot,0.184333333,18.4333333,78,CZ
+American Alligator,Crocodilian,IGF2.plot,0.98,98,63,CK
+Asian Grass Lizard,Squamates,IGF2.plot,0.967,96.7,42,BP
+Asian House Shrew,Eutheria,IGF2.plot,0,0,11,AK
+Atlantic Canary,Aves,IGF2.plot,0.627,62.7,75,CW
+Bengalese Finch,Aves,IGF2.plot,0.016,1.6,73,CU
+Black Flying Fox,Eutheria,IGF2.plot,0.1415,14.15,14,AN
+Broad-eared Bat,Eutheria,IGF2.plot,0.023333333,2.3333333,21,AU
+Brown Anole,Squamates,IGF2.plot,0.525,52.5,48,BV
+Brown Basilisk,Squamates,IGF2.plot,0.055,5.5,47,BU
+Brown Bear,Eutheria,IGF2.plot,0.53675,53.675,39,BM
+Brown Rat,Eutheria,IGF2.plot,0.00075,0.075,24,AX
+Cat,Eutheria,IGF2.plot,0.34325,34.325,36,BJ
+Central Bearded Dragon,Squamates,IGF2.plot,0.993,99.3,43,BQ
+Chicken,Aves,IGF2.plot,0.8975,89.75,69,CQ
+Chilean Tinamou,Aves,IGF2.plot,1,100,64,CL
+Chinese Softshell Turtle,Testudines,IGF2.plot,0.804,80.4,57,CE
+Collared Flycatcher,Aves,IGF2.plot,0.6185,61.85,72,CT
+Common Box Turtle,Testudines,IGF2.plot,0.987,98.7,60,CH
+Common Leopard Gecko,Squamates,IGF2.plot,0.45,45,40,BN
+Common Marmoset,Eutheria,IGF2.plot,0.48175,48.175,26,AZ
+Common Musk Turtle,Testudines,IGF2.plot,0.983,98.3,58,CF
+Common Snapping Turtle,Testudines,IGF2.plot,1,100,59,CG
+Common Wombat,Methatheria,IGF2.plot,0.8805,88.05,6,AF
+Cottonmouth ,Squamates,IGF2.plot,0.918,91.8,53,CA
+Cow,Eutheria,IGF2.plot,0.80525,80.525,34,BH
+Diamondback Terrapin,Testudines,IGF2.plot,0.977,97.7,62,CJ
+Dog,Eutheria,IGF2.plot,0.99925,99.925,37,BK
+Eastern Fence Lizard,Squamates,IGF2.plot,0.907,90.7,46,BT
+Egyptian Fruit Bat,Eutheria,IGF2.plot,0.007,0.7,15,AO
+Emu,Aves,IGF2.plot,0.254,25.4,65,CM
+European Hedgehog,Eutheria,IGF2.plot,0,0,12,AL
+European Pied Flycatcher,Aves,IGF2.plot,0.567,56.7,71,CS
+Four-toed Hedgehog,Eutheria,IGF2.plot,0.0075,0.75,13,AM
+Ghost-faced Bat,Eutheria,IGF2.plot,0.530666667,53.0666667,18,AR
+Giant Panda,Eutheria,IGF2.plot,0.8775,87.75,38,BL
+Gray short-tailed oppossum,Methatheria,IGF2.plot,0.005,0.5,2,AB
+Green Iguana,Squamates,IGF2.plot,0.463,46.3,44,BR
+Green Monkey,Eutheria,IGF2.plot,0.398666667,39.8666667,27,BA
+Grey Crested Tit,Aves,IGF2.plot,0.953,95.3,79,DA
+Hairy-legged Myotis,Eutheria,IGF2.plot,0.383666667,38.3666667,19,AS
+Horse,Eutheria,IGF2.plot,0.4955,49.55,30,BD
+House Mouse,Eutheria,IGF2.plot,0.000432432,0.0432432,23,AW
+Human,Eutheria,IGF2.plot,0.500666667,50.0666667,28,BB
+Jamaican Fruit Bat,Eutheria,IGF2.plot,0.071,7.1,17,AQ
+Lesser Dog-like Bat,Eutheria,IGF2.plot,0.580333333,58.0333333,16,AP
+Lesser Hedgehog Tenrec,Eutheria,IGF2.plot,0.807,80.7,9,AI
+Little Brown Skink,Squamates,IGF2.plot,0.998,99.8,41,BO
+Little Greenbul,Aves,IGF2.plot,0.802,80.2,77,CY
+Long-nosed Bandicoot,Methatheria,IGF2.plot,0.963,96.3,5,AE
+Long-nosed Leopard Lizard,Squamates,IGF2.plot,0.334,33.4,45,BS
+Mallard ,Aves,IGF2.plot,0.619,61.9,67,CO
+Marsh Tit,Aves,IGF2.plot,0.786,78.6,80,DB
+Mexican Free-tailed Bat,Eutheria,IGF2.plot,0.043333333,4.3333333,20,AT
+Mountain Hare,Eutheria,IGF2.plot,0.55975,55.975,22,AV
+Muscovy Duck,Aves,IGF2.plot,0.8815,88.15,66,CN
+New Guinea Ground Boa,Squamates,IGF2.plot,0.904,90.4,50,BX
+Nine-banded Armadillo,Eutheria,IGF2.plot,0.5005,50.05,10,AJ
+Northern Treeshrew,Eutheria,IGF2.plot,0.708,70.8,25,AY
+Palestine Saw-scaled Viper,Squamates,IGF2.plot,0.801,80.1,52,BZ
+Platypus,Monotreme,IGF2.plot,0.798,79.8,1,AA
+Red-eared Slider,Testudines,IGF2.plot,0.964,96.4,61,CI
+Rhesus Macaque,Eutheria,IGF2.plot,0.364,36.4,29,BC
+Ruby-throated Hummingbird,Aves,IGF2.plot,0.99,99,70,CR
+Rufous-fronted Bushtit,Aves,IGF2.plot,0.956,95.6,76,CX
+Rufous-vented Tit,Aves,IGF2.plot,0.918,91.8,81,DC
+Sheep,Eutheria,IGF2.plot,0.76075,76.075,32,BF
+Sichuan Partridge,Aves,IGF2.plot,1,100,68,CP
+Sierra Garter Snake,Squamates,IGF2.plot,0.946,94.6,55,CC
+Southern Alligator Lizard,Squamates,IGF2.plot,0.962,96.2,49,BW
+Southern Brown Bandicoot,Methatheria,IGF2.plot,0.902,90.2,4,AD
+Striped Possum,Methatheria,IGF2.plot,0.39,39,7,AG
+Sunbeam Snake,Squamates,IGF2.plot,0.955,95.5,51,BY
+Sunda Pangolin,Eutheria,IGF2.plot,0.92675,92.675,35,BI
+Tasmanian devil,Methatheria,IGF2.plot,0.916,91.6,3,AC
+Water Buffalo,Eutheria,IGF2.plot,0.94575,94.575,33,BG
+West African Mud Turtle,Testudines,IGF2.plot,0.981,98.1,56,CD
+Western Pygmy Possum,Methatheria,IGF2.plot,0.817,81.7,8,AH
+Western terrestrial garter snake,Squamates,IGF2.plot,0.9735,97.35,54,CB
+White-throated Sparrow,Aves,IGF2.plot,0.1785,17.85,74,CV
+Wild Boar,Eutheria,IGF2.plot,0.9805,98.05,31,BE
+Yellow-bellied Tit,Aves,IGF2.plot,0.815666667,81.5666667,78,CZ
