@@ -9,7 +9,8 @@ This repository holds all supplemental files for "We need to talk, about IGF2".
 ### Quick Key to File Directory: Detailed Descriptions of file use can be found below.
 Analysis| File Type | &nbsp;
 -------------------------------------|------------------------------------ | -----------------------------------------------------
-RNAseq Data Mining                   |Raw Data                             | [Raw Data]()
+RNAseq Data Mining                   |Raw Data                             | [All Samples Analyzed]()
+&nbsp;                               |&nbsp;                               | [Raw Data Analysis Output]()
 &nbsp;                               |&nbsp;                               | [Cleaned Data](MetaData_Counts_Cleaned.csv)
 &nbsp;                               |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.txt)
 &nbsp;                               |Statistical Code                     | [RNAseq Analysis Code]()
@@ -62,6 +63,10 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
 ```
 
 ## Suplementary Materials: 
+
+Table of RNAseq Samples included in Analysis. The raw file is available for download at link to the left, or in table above.
+
+**INSERT IMAGE**
 
 Image of phylogenetic tree produced from the [Dendrogram for Phylogeny](amniota_2.txt). This image was used to create plot3ID CSV file and produce Figure 1 in BioRender.
 
