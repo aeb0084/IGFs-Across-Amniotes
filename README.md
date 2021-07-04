@@ -11,7 +11,6 @@ Analysis| File Type | &nbsp;
 -------------------------------------|------------------------------------ | -----------------------------------------------------
 RNAseq Data Mining                   |Raw Data                             | [MetaData of All Samples Analyzed](TheBigTable-MetaData.csv)
 &nbsp;                               |Code                                 | [Example RNAseq Analysis Code](q.down_trim_map_Carnivora.sh)
-&nbsp;                               |&nbsp;                               | [Raw Data Analysis Output]()
 &nbsp;                               |Code                                 | [Parsing Counts and merging metadata](MergingCounts_toMetadata_2021-06-10)
 &nbsp;                               |&nbsp;                               | [Final Cleaned Data](MetaData_Counts_Cleaned.csv)
 &nbsp;                               |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.txt)
