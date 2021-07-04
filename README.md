@@ -69,7 +69,9 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
 
 ## Supplementary Materials: 
 
-Table of RNAseq Samples included in Analysis. The raw file is available for download at link to the left, or in table above.
+[MetaData of All Samples Analyzed](TheBigTable-MetaData.csv) in Analysis. The raw file is available for download at link to the left, or in table above.
+
+
 
 **INSERT IMAGE**
 
