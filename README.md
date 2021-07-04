@@ -10,10 +10,10 @@ This repository holds all supplemental files for "We need to talk, about IGF2".
 Analysis| File Type | &nbsp;
 -------------------------------------|------------------------------------ | -----------------------------------------------------
 RNAseq Data Mining                   |Raw Data                             | [MetaData of All Samples Analyzed](TheBigTable-MetaData.csv)
-&nbsp;                               |Code                                 | [Example RNAseq Analysis Code](q.down_trim_map_Carnivora.sh)
-&nbsp;                               |Code                                 | [Parsing Counts and merging metadata](MergingCounts_toMetadata_2021-06-10)
 &nbsp;                               |&nbsp;                               | [Final Cleaned Data](MetaData_Counts_Cleaned.csv)
 &nbsp;                               |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.txt)
+&nbsp;                               |Code                                 | [Example RNAseq Analysis Code](q.down_trim_map_Carnivora.sh)
+&nbsp;                               |&nbsp;                               | [Parsing Counts and merging metadata](MergingCounts_toMetadata_2021-06-10)
 IGF Expression Analysis              |Raw Data                             | [IGF Publication Over Time](Timeline_IGFs_pub.csv)
 &nbsp;                               |&nbsp;                               | [qPCR IGF Expression Across Species](Species_Combined_edited_2.csv)
 &nbsp;                               |&nbsp;                               | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
