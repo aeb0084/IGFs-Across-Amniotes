@@ -29,6 +29,11 @@ IGF Expression Analysis              |Raw Data                             | [IG
 
 ### RNAseq Data Curration: 
 
+The NCBI Short Read Archive (SRA) database was used to identify RNAseq samples in amniotes that met the following search terms:  adult OR juvenile, liver, RNAseq, Illumina. For each species we selected up to four individuals that represented the control conditions if they were from an experiment. When possible, we took two male and two female samples. For mice we used eight strains of Mus musculus, including both inbred and outbred strains. All samples used in the analysis can be found [here](TheBigTable-MetaData.csv). 
+
+SRA run files were downloaded using SRAtools and cleaned using Trimmomatic. [Reference Sequences](Reference_sequences.zip) and an example [code](q.down_trim_map_Carnivora.sh) for analysis are availble at the corresponding links.  Reads uniquely mapped to the reference transcripts were counted using Samtools, and then normalized by size (kb) of the reference sequence and by number of cleaned reads in the SRA run (RPKM) to produce a [raw count file](RawCounts_Data.zip). Runs that had low numbers of cleaned reads resulting in no mapping to either IGF1 or IGF2 were removed from the study, resulting in a [final file](MetaData_Counts_Cleaned.csv) containing 245 SRA rRuns representing 82 species.  
+
+
 ### Statistical Modeling and Data Visualization: 
 
 The statistical analyses were performed in R (version 4.0.3) using the code file titled [Quantitative Analysis R Code] in an R Markdown format. The code output displays all statistical models, results, and figures produced in either [PDF](CrossSpecGraph_Final.pdf) or [HTML](CrossSpecGraph_Final.html) format. Note, you will have to download the HTML file to visualize the data output. 
@@ -71,11 +76,6 @@ plot=ggplot(data=dat, aes(x=Independent_Variable, y=Dependent_Variable, fill=Gen
 
 ## Supplementary Materials: 
 
-[MetaData of All Samples Analyzed](TheBigTable-MetaData.csv) in Analysis. The raw file is available for download at link to the left, or in table above.
-
-
-
-**INSERT IMAGE**
 
 Image of phylogenetic tree produced from the [Dendrogram for Phylogeny](amniota_2.txt). This image was used to create plot3ID CSV file and produce Figure 1 in BioRender.
 
