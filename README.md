@@ -19,7 +19,7 @@ RNAseq Data Mining                   |Meta Data                            | [Me
 IGF Expression Analysis              |Raw Data                             | [IGF Publication Over Time](Timeline_IGFs_pub.csv)
 &nbsp;                               |&nbsp;                               | [qPCR IGF Expression Across Species](Species_Combined_edited_2.csv)
 &nbsp;                               |&nbsp;                               | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
-&nbsp;                               |Statistical Code                     | [Statistical Analysis/Visualization Code](CrossSpecGraph_Final.rmd)
+&nbsp;                               |Statistical Code                     | [Statistical Analysis/Visualization Code](CrossSpecGraph_Final.Rmd)
 &nbsp;                               |RMarkdown Output Files               | [HTML Markdown Output](CrossSpecGraph_Final.html)
 &nbsp;                               |&nbsp;                               | [PDF Markdown Output](CrossSpecGraph_Final.pdf)
 
