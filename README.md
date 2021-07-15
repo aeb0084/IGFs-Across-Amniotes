@@ -13,7 +13,7 @@ RNAseq Data Mining                   |Meta Data                            | [Me
 &nbsp;                               |&nbsp;                               | [Reference Sequences](Reference_sequences.zip)
 &nbsp;                               |Raw Data                             | [Counts_Data](RawCounts_Data.zip)
 &nbsp;                               |Code                                 | [Example RNAseq Analysis Code](q.down_trim_map_Carnivora.sh)
-&nbsp;                               |Code                                 | [Parsing Counts and merging metadata](MergingCounts_toMetadata_2021-06-10)
+&nbsp;                               |Code                                 | [Parsing Counts and merging metadata](MergingCounts_toMetadata_2021-06-10.R)
 &nbsp;                               |Final Data                           | [Final Cleaned Data](MetaData_Counts_Cleaned.csv)
 &nbsp;                               |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.tre)
 IGF Expression Analysis              |Raw Data                             | [IGF Publication Over Time](Timeline_IGFs_pub.csv)
