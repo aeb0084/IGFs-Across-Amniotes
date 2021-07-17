@@ -1,0 +1,388 @@
+---
+title: "CrossSpecies Plot"
+output: html_document
+---
+#Load Necessary Packages
+```{r, warning=F, message=F}
+#If ggtree has not previously been installed, remove the "#" on the line below and use BiocManager to download the package. Note if you do not "biocmanaged" package installed, you will need that as well.
+#BiocManager::install("ggtree")
+
+#Load the following packages to run the res of the script.
+library(tidyverse)
+library(viridis)
+library(Rmisc)
+library(phylogram)
+library(ggtree)
+library(ggplot2)
+library(nlme)
+library(arsenal)
+```
+
+## Introduction Plot: Bias in IGF Publication 
+
+```{r}
+pub=read.csv("Timeline_IGFs_pub.csv")
+pub=subset(pub, Year != "2021")
+
+ggplot() + 
+ geom_line(data=pub, aes(x = Year, y = IGF1), color= "orange2", fill = "orange2", size = 1,  alpha=1) +
+  geom_line(data=pub, aes(x = Year, y = IGF2), color= "skyblue4", fill="skyblue4",  size = 1,  alpha=1) +
+  geom_line(data=pub, aes(x = Year, y = Post.natal_no.cancer_IGF1), color= "orange2", size = 1, linetype= "twodash") +
+  geom_line(data=pub, aes(x = Year, y = Post.natal_no.cancer_IGF2), color= "skyblue4", size = 1, linetype= "twodash") +
+ geom_area(data=pub, aes(x = Year, y = Non.model_IGF1), color= "orange2", fill="orange2", size = 1, alpha=0.4, linetype= "solid") +
+  geom_area (data=pub, aes(x = Year, y = Non.model_IGF2), color= "skyblue4", fill="skyblue4", size = 1, alpha=0.4, linetype= "solid")  +
+  ylab("Number of Publications") +
+  xlab ("Year") +
+theme(axis.title = element_text(face= "bold", size= 12))
+
+
+```
+
+
+##Data Curation of RNAseq Data
+```{R}
+
+# Upload dataset in CSV format
+data2 <- read.csv("MetaData_Counts_Cleaned.csv")
+#Get a count of the total number of unique species that will be included in the data set.
+count=count(unique(data2$Organism))
+
+#aggregate data to get average IGF1 for each species (combining all individuals of the same species)
+IGF1=summarySE(data = data2, measurevar="IGF1_Proportion", groupvars = c("Organism", "Common.Name", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+#aggregate data to get average IGF2 for each species (combining all individuals of the same species)
+IGF2=summarySE(data = data2, measurevar="IGF2_Proportion", groupvars = c("Organism", "Common.Name", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+#Merge IGF1 and IGF2 files together by the organisms common name.
+data=merge(x = IGF1, y = IGF2, by = "Organism")
+
+#Make new data frame including only the common name, organism, subcategory for organism organization, IGF1 value, and IGF2 value
+data=data.frame(data$Common.Name.x, data$Organism, data$Category.x, data$Subcategory.x, data$Phylogenetic_Cat.x, data$IGF1_Proportion, data$IGF2_Proportion)
+
+#rename columns for clarity following merge
+names(data)[names(data) == "data.Category.x"] <- "Category"
+names(data)[names(data) == "data.Common.Name.x"] <- "individual"
+names(data)[names(data) == "data.Subcategory.x"] <- "group"
+names(data)[names(data) == "data.IGF1_Proportion"] <- "IGF1.plot"
+names(data)[names(data) == "data.IGF2_Proportion"] <- "IGF2.plot"
+names(data)[names(data) == "data.Organism"] <- "Organism"
+names(data)[names(data) == "data.Phylogenetic_Cat.x"] <- "Phylogenetic_Cat"
+
+#take another count to make sure you did not lose data in the merging process
+count2=count(unique(data$Organism))
+#compare data frames to see what has changed
+summary(comparedf(count, count2, by = "x"))
+
+#Write file to CSV to preserve data set used in all following analyses
+write.csv(data,"Concat_Final_Dat2.csv", row.names = FALSE)
+
+#Format data frame for use in Proportions Plot. Rename columns, and then reformat to have IGF1.plot and IGF2.plot combine into a single column by species. The new column will be called "Value". This is used for proportional barplots
+data3=data.frame(data$individual,data$group,data$IGF1.plot, data$IGF2.plot)
+names(data3)[names(data3) == "data.individual"] <- "individual"
+names(data3)[names(data3) == "data.group"] <- "group"
+names(data3)[names(data3) == "data.IGF1.plot"] <- "IGF1.plot"
+names(data3)[names(data3) == "data.IGF2.plot"] <- "IGF2.plot"
+names(data)[names(data) == "data.Organism"] <- "Organism"
+
+data3=data3[complete.cases(data3), ]
+data3 <- data3 %>% gather(key = "observation", value="value", -c(1,2)) 
+```
+
+
+```{R}
+library(janitor)
+
+#stacked barplot
+
+write.csv(data3, "datafile3.csv",row.names = FALSE)
+
+#This file needs to be made with the adjusted values based on Randy's new Tree.
+p3ID=read.csv("datafile3_plotID.csv")
+
+
+  p4=ggplot(p3ID, aes(fill=observation, y=Percentage, x=plotID)) +
+  geom_bar(position="stack", stat="identity") +  scale_fill_manual(values=c("orange2", "skyblue4")) +
+coord_flip() +
+  scale_x_discrete(lim=rev) +
+ theme(axis.text.y = element_blank(), axis.title.y = element_blank())
+
+ggsave(p4, file="phylo_barplot.nc.png", width=3, height=9, dpi=600)
+
+
+```
+
+##Violin plots by Species on qPCR data
+```{r}
+#Read in data and format data/subset data
+sp=read.csv("Species_Combined_edited.csv")
+#Set ages to order chronologically
+sp$Age = factor(sp$Age, levels=c('Embryonic','Juvenile','Adult'))
+#Set custom dodge location for lining us data with grouped barplots
+dodge <- position_dodge(width = 0.6)
+#Set species order for facet plotting
+sp$Species=factor(sp$Species, levels=c('Zebra Finch', "House Sparrow", "E. Fence Lizard", "Brown Anole"))
+
+fancy_scientific <- function(l) {
+     # turn in to character string in scientific notation
+     l <- format(l, scientific = TRUE)
+     # quote the part before the exponent to keep all the digits
+     l <- gsub("^(.*)e", "'\\1'e", l)
+     # turn the 'e+' into plotmath format
+     l <- gsub("e", "%*%10^", l)
+     # return this as an expression
+     parse(text=l)
+}
+```
+
+#Facet plots of qPCR data
+```{r}
+
+overall.SQ=summarySE(sp, measurevar = "SQ", groupvars = c("Species","Individual", "Target", "Age"))
+
+p1=ggplot(sp, aes(x=Age, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+geom_point(data = overall.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+     scale_y_continuous(labels=fancy_scientific) +
+  theme_bw() +
+  facet_wrap(~Species, scales="free", nrow=4) +
+  theme(strip.text = element_text(size=14, face="bold"),
+        axis.text.x = element_text(size=12)) 
+p1
+
+ggsave(p1, file="qPCR_facet.nc.png", width=6, height=9, dpi=600)
+
+```
+
+##anoles minus adults for inset
+```{r}
+BA=subset(sp, Species == "Brown Anole")
+devan=subset(BA, Age != 'Adult')
+devan.SQ=summarySE(devan, measurevar = "SQ", groupvars = c("Individual", "Target", "Age"))
+
+p2=ggplot(devan, aes(x=Age, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+geom_point(data = devan.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+     scale_y_continuous(labels=fancy_scientific) +
+  theme(axis.text.x = element_text(size=12))
+
+
+p2
+
+ggsave(p2, file="BA_dev_inset.nc.png", width=9, height=7, dpi=600)
+
+
+```
+
+#note: Run these again with SQ values
+##Statistical Analysis
+#ZebraFinch Statistics
+```{r}
+#Zebra Finch Statistics
+sp=read.csv("Species_Combined_edited_2.csv")
+
+zf=subset(sp, Species == "Zebra Finch")
+
+zf.emb=subset(zf, Age=="Embryonic")
+zf.juv=subset(zf, Age=="Juvenile")
+zf.ad=subset(zf, Age=="Adult")
+
+summary(lme(SQ~Target, random=~1|Content, data=zf.emb))
+summary(lme(SQ~Target, random=~1|Content, data=zf.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=zf.ad)) 
+
+zf.ad.m=subset(zf.ad, Sex =="Male")
+zf.ad.f=subset(zf.ad, Sex=="Female")
+summary(lme(SQ~Target, random=~1|Content, data=zf.ad.m)) 
+summary(lme(SQ~Target, random=~1|Content, data=zf.ad.f)) 
+
+```
+
+#House Sparrow Statistics
+```{r}
+#House Sparrow Statistics
+hs=subset(sp, Species == "House Sparrow")
+
+hs.juv=subset(hs, Age=="Juvenile")
+hs.ad=subset(hs, Age=="Adult")
+
+summary(lme(SQ~Target, random=~1|Content, data=hs.juv))
+summary(lme(SQ~Target, random=~1|Content, data=hs.ad)) 
+
+```
+
+#Sceloperus Statistics
+```{r}
+#Scelop Statistics
+scelop=subset(sp, Species == "E. Fence Lizard")
+
+sc.juv=subset(scelop, Age=="Juvenile")
+sc.ad=subset(scelop, Age=="Adult")
+
+summary(lme(SQ~Target, random=~1|Content, data=sc.juv))
+summary(lme(SQ~Target, random=~1|Content, data=sc.ad)) 
+
+```
+#BA Statistics
+```{r}
+#Anole Statistics
+anole=subset(sp, Species == "Brown Anole")
+
+a.emb=subset(anole, Age=="Embryonic")
+a.juv=subset(anole, Age=="Juvenile")
+a.ad=subset(anole, Age=="Adult")
+
+summary(lme(SQ~Target, random=~1|Content, data=a.emb)) 
+summary(lme(SQ~Target, random=~1|Content, data=a.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=a.ad))
+
+a.ad.m=subset(a.ad, Sex =="Male")
+a.ad.f=subset(a.ad, Sex=="Female")
+summary(lme(SQ~Target, random=~1|Content, data=a.ad.m)) 
+summary(lme(SQ~Target, random=~1|Content, data=a.ad.f)) 
+
+```
+#Mouse Statistics
+```{r}
+#Mouse Statistics
+mouse=subset(sp, Species == "House Mouse")
+
+m.emb=subset(mouse, Age=="Embryonic")
+m.juv=subset(mouse, Age=="Juvenile")
+m.ad=subset(mouse, Age=="Adult")
+
+summary(lme(SQ~Target, random=~1|Content, data=m.emb))
+summary(lme(SQ~Target, random=~1|Content, data=m.juv)) 
+summary(lme(SQ~Target*Sex, random=~1|Content, data=m.ad))
+
+```
+
+#Mouse Subset Data Plots by Strain (qPCR Data)
+```{r}
+mouse$Age_sub = factor(mouse$Age_sub, levels=c('Embryonic.Lab','Adult.Lab','Juvenlie.Wild', 'Adult.Wild'))
+
+install.packages("ggforce")
+install.packages("ggalt")
+library(ggforce)
+library(ggalt)
+library(dplyr)
+
+mean.SQ=summarySE(mouse, measurevar = "SQ", groupvars = c("Individual", "Target", "Age_sub"))
+
+
+p5=ggplot(mouse, aes(x=Age_sub, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Life Stage") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+    geom_point(data = mean.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+    theme_bw() +
+  theme(axis.text.x = element_text(size=12)) 
+
+p5
+
+ggsave(p5, file="Mouse_Strain.nc.png", width=9, height=7, dpi=600)
+
+```
+
+#Mouse Subset Data Plots by Strain (RNAseq)
+```{r}
+
+#aggregate data to get average IGF1 for each species (combining all individuals of the same species)
+
+IGF1.m=summarySE(data = data2, measurevar="IGF1.plot", groupvars = c("Strain", "Organism", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+IGF2.m=summarySE(data = data2, measurevar="IGF2.plot", groupvars = c("Strain", "Organism", "Category", "Subcategory", "Phylogenetic_Cat"), na.rm = FALSE, conf.interval = 0.95, .drop = TRUE)
+
+dat=merge(x = IGF1.m, y = IGF2.m, by = "Strain", all.x=TRUE)
+
+dat=data.frame(dat$Strain, dat$Organism.x ,dat$IGF1.plot, dat$IGF2.plot)
+dat=dat[complete.cases(dat), ]
+
+names(dat)[names(dat) == "dat.Strain"] <- "Strain"
+names(dat)[names(dat) == "dat.IGF1.plot"] <- "IGF1"
+names(dat)[names(dat) == "dat.IGF2.plot"] <- "IGF2"
+
+
+dat3 <- dat %>% gather(key = "Gene", value="value", -c(1,2)) 
+
+p6=ggplot(dat3, aes(fill=Gene, y=value, x=Strain)) +
+  geom_bar(position="stack", stat="identity") +  scale_fill_manual(values=c("orange2", "skyblue4")) +
+coord_flip() +
+  scale_x_discrete(lim=rev) +
+  theme(axis.title.y = element_blank(),
+       legend.position = "top")
+
+ggsave(p6, file="Mouse_Strain_RNAseq.nc.png", width=5, height=7, dpi=600)
+
+```
+
+#Graph of adult data by sex when available 
+```{r}
+sex=subset(sp, Age == "Adult"  & Species != "House Mouse" & Species != "E. Fence Lizard" & Species != "House Sparrow")
+sex.SQ=summarySE(sex, measurevar = "SQ", groupvars = c("Individual","Species", "Sex", "Target"))
+
+
+p7=ggplot(sex, aes(x=Sex, y=SQ, fill= Target)) + 
+    ylab("Relative Copy Number") +
+  xlab("Sex") +
+  ggtitle("IGF Relative Liver Expression") +
+  geom_violin(trim=F, position= dodge, scale="width") +     
+    scale_fill_manual(values = c("orange2", "skyblue4")) +
+  geom_boxplot(width=0.15, position= dodge, outlier.shape = NA, color="black") +
+    geom_point(data = sex.SQ, size =2, shape = 19, color="black", position=position_dodge(width=0.6)) +
+  geom_point(position=position_jitterdodge(jitter.width = 0.05, dodge.width = 0.6), size=1, alpha=0.5, aes(group= Target), color="white") + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size=12)) +
+  facet_wrap(~Species, scales="free") +
+    theme(strip.text = element_text(size=14, face="bold")) 
+  
+
+p7
+
+ggsave(p7, file="Sex_interactions.nc.png", width=9, height=5, dpi=600)
+
+```
+
+#Test for Correlations in IGF1 and IGF2 within species
+```{r}
+library(ggalt)
+library(ggforce)
+
+corr$Age = factor(corr$Age, levels=c('Embryonic','Juvenile', 'Adult'))
+
+
+corr=read.csv("correlational_data.csv")
+zf.cor=subset(corr, Species == "Zebra Finch")
+ba.cor=subset(corr, Species == "Brown Anole")
+hs.cor=subset(corr, Species == "House Sparrow")
+sc.cor=subset(corr, Species == "E. Fence Lizard")
+
+cor.test(zf.cor$IGF1, zf.cor$IGF2)
+
+ggplot(corr, aes(IGF1, IGF2)) + 
+  geom_point() + 
+  geom_smooth(method="lm", color="black")+  
+  geom_mark_ellipse(expand = 0,aes(fill=Age)) + 
+  facet_wrap(~Species, scales="free")
+
+
+ggplot(zf.cor, aes(IGF1, IGF2)) + geom_point() + geom_smooth(method="lm", color="black")+  geom_mark_ellipse(expand = 0,aes(fill=Age))
+ggplot(ba.cor, aes(IGF1, IGF2)) + geom_point() + geom_smooth(method="lm", color="black")+  geom_mark_ellipse(expand = 0,aes(fill=Age))
+ggplot(hs.cor, aes(IGF1, IGF2)) + geom_point() + geom_smooth(method="lm", color="black")+  geom_mark_ellipse(expand = 0,aes(fill=Age))
+ggplot(sc.cor, aes(IGF1, IGF2)) + geom_point() + geom_smooth(method="lm", color="black")+  geom_mark_ellipse(expand = 0,aes(fill=Age))
+
+```
