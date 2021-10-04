@@ -94,8 +94,8 @@ Image of phylogenetic tree produced from the [Dendrogram for Phylogeny](amniota_
 
 <img src="Amniota_tree.jpeg" width="600">
 
-<img src="Table_S1.jpg" width="600">
+<img src="Table_S1.jpg" width="1200">
 
-<img src="Table_S2.jpg" width="600">
+<img src="Table_S2.jpg" width="1200">
 
 
