@@ -20,7 +20,6 @@ MetaData_Counts_Cleaned.csv          |Final Dataset                        | [Fi
 amniota_2.tre                        |&nbsp;                               | [Dendrogram for Phylogeny](amniota_2.tre)
 datafile3_plotID.csv                 |Data                                 | [Relative IGF Expression Across Amniotic Tree](datafile3_plotID.csv)
 Tables_S1_S2.docx.                   |Supplemental Tables                  | [Supplemental Tables](Supplemental_Tables.docx)
-
 &nbsp; 
 IGF Quantititatve Gene Expression Analysis              
 Timeline_IGFs_pub.csv                |Raw Data                             | [Number of IGF Publications Over Time](Timeline_IGFs_pub.csv)
